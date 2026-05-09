@@ -1,0 +1,132 @@
+\chapter{Detección de anomalías}
+
+\section{¿Qué es la detección de anomalías?}
+ La detección de anomalías combina las técnicas de aprendizaje supervisado para generar un modelo de valores normales y, posteriormente, se utiliza este modelo con nuevos registros para detectar valores anómalos o inusuales.
+ 
+ 
+Una anomalía es una observación que se desvía del comportamiento o patrón esperado de un conjunto de datos determinado. Estas técnicas también se conocen en la literatura con el nombre de detección de \textit{outliers}. En esencia, un \textit{outlier} es un valor poco habitual y, por tanto, puede ser considerado una anomalía.
+
+\subsection{Técnicas para detectar anomalías}
+\begin{itemize}
+    \item \textbf{Detección de anomalías con algoritmos supervisados}: se utilizan datos etiquetados para entrenar un modelo que incluye instancias normales y anómalas.
+
+    \item \textbf{Detección de anomalías con algoritmos no supervisados}: el modelo aprende a identificar anomalías sin conocimiento previo de lo que constituye un comportamiento normal.
+
+    \item \textbf{Detección de anomalías con algoritmos semisupervisados}: el modelo aprende a identificar anomalías en los datos sin etiquetar en función de lo que aprende de los datos etiquetados.
+
+    \item Detección estadística de anomalías: utilizando técnicas estadísticas para detectar anomalías basadas en la distribución de los datos.
+\end{itemize}
+
+\subsection{Tipos de outliers}
+
+\begin{itemize}
+    \item Valor atípico global: hay una desviación significativa del resto de datos.
+
+    \item  Valor atípico contextual: el objeto se desvía significativamente según un contexto seleccionado. 
+
+    \item Valor atípico colectivo: cuando un subconjunto de datos en un conjunto se desvía del conjunto completo, incluso si los objetos de datos individuales pueden no ser valores atípicos.
+\end{itemize}
+
+\subsection{Ventajas y desventajas}
+\begin{itemize}
+    \item Ventajas: detección temprana de anomalías; precisión mejorada; seguridad y eficiencia mejoradas.
+
+    \item Desventajas: detectar datos normales como valores atípicos (falsos positivos); preprocesamiento de datos necesario; la selección del modelo es crítico; los datos han de estar equilibrados.
+\end{itemize}
+
+
+\section{Métodos estadísticos para la detección de anomalías}
+
+Los métodos estadísticos univariables se centran en el análisis de una sola variable a la vez. Estos métodos incluyen técnicas como el cálculo de la media y la desviación estándar para identificar valores que se desvían significativamente del comportamiento esperado, el uso del Z-Score para estandarizar las puntuaciones y detectar outliers, así como la aplicación de la media móvil para observar tendencias y detectar irregularidades a lo largo del tiempo.
+
+En el ámbito de la estadística, las pruebas son fundamentales para la toma de decisiones y la prueba de hipótesis. Se utilizan pruebas paramétricas y no paramétricas para discernir patrones y relaciones importantes en los datos.
+
+\subsection{Pruebas no paramétricas}
+
+Las pruebas no paramétricas son útiles para detectar anomalías especialmente cuando no se pueden hacer suposiciones sobre la distribución de los datos. 
+
+\subsubsection{Método del percentil}
+
+El método del percentil define un umbral con base en el rango percentil de los puntos de datos. Identificar anomalías como valores que están por debajo o por encima de un percentil específico es útil cuando se trata de distribuciones asimétricas no gaussianas.
+
+\subsubsection{Método de la media móvil}
+Este método calcula la media móvil de los puntos de datos y compara cada dato con la media. Las anomalías suelen estar desviados significativamente del promedio móvil.
+
+
+Existen otras pruebas no paramétricas comunes para la detección de anomalías: test de Grubbs (test de Grubbs para un outlier), test de Tukey (prueba de rango intercuartílico), test de Wilcoxon (test de Wilcoxon para muestras apareadas), test de Kruskal-Wallis y test de Mann-Whitney U. 
+
+\subsection{Pruebas paramétricas}
+
+Estas técnicas se basan en parámetros estadísticos como la media y la desviación estándar para identificar puntos de datos que se desvían significativamente de la norma.
+
+Cada prueba actúa sobre un escenario diferente, por ejemplo, Z-Score y T-Score se utilizan para comparar las medias de uno o dos grupos; ANOVA se utiliza para comparar las medias de tres o más grupos.
+
+\subsection{Z-Score}
+El Z-Score es una técnica estadística que nos permite detectar anomalías. Si el valor de Z para un punto de datos supera el umbral establecido por el usuario de $x$ desviaciones estándar que se alejan de la media, se considera anomalía.
+
+\subsection{T-Score}
+La prueba de T-Score es similar al Z-Score, pero se utiliza cundo el tamaño de la muestra es pequeño y la desviación estándar es desconocido.
+
+
+\section{Algoritmos basados en distancia}
+
+La idea principal de los algoritmos basados en distancia es que los puntos de datos que están lejos de otros puntos se consideran anomalías. Se basan en los siguientes principios:
+
+\begin{itemize}
+    \item  Distancia euclidiana.
+    \item Distancia al vecino más cercano: los puntos de datos que tienen una distancia mayor que un umbral a su vecino más cercano se consideran anomalías.
+
+    \item Distancia media a k-vecinos más cercanos: similar a la anterior, pero usa la media de la distancia de los k-vecinos más cercanos.
+\end{itemize}
+
+\subsection{Métodos comunes basados en distancia}
+\subsubsection{K-Nearest Neighbors (k-NN)}
+Detecta anomalías basándose en la distancia a los k vecinos más cercanos.
+Funcionamiento: calcula la distancia de cada punto a sus k vecinos más cercanos. Se define un umbral de distancia. Los puntos cuya distancia a sus k vecinos más cercanos excede el umbral se consideran anomalías
+
+\subsubsection{Distance-Based Outlier Detection (DBOD)}
+Detecta anomalías considerando la distancia a un conjunto de vecinos.
+
+Funcionamiento: para cada punto, encuentra sus k vecinos más cercanos. Se calcula la distancia al vecino más cercano y a otros vecinos. Los puntos con las mayores distancias son considerados anomalías.
+
+\subsubsection{Distancia de Mahalanobis}
+
+Utiliza la distancia de Mahalanobis para detectar anomalías en datos multivariados considerando la correlación entre variables.
+
+Funcionamiento: aplica un algoritmo de clustering para agrupar los datos. Calcula la distancia de cada punto al centroide de su clúster. Los puntos con grandes distancias a sus centroides son considerados anomalías.
+
+
+\section{Algoritmos basados en densidad}
+Los algoritmos basados en densidad identifican anomalías detectando puntos en el espacio de datos que están en regiones de baja densidad. Los puntos de datos que no tienen suficientes vecinos cercanos o están significativamente alejados de otros puntos se consideran anomalías.
+
+Tienen en cuenta que la densidad local de un punto se calcula considerando su proximidad a otros puntos. Los puntos en áreas de baja densidad se consideran anomalías
+
+ Los algoritmos más comunes son: Local Outlier Factor (LOF), Density-Based Spatial Clustering of Applications with Noise (DBSCAN) (ver \hyperref[TEMA5]{TEMA 5. DBSCAN}) y One-Class SVM con Kernel Gaussiano (RBF).
+
+\subsection{Local Outlier Factor (LOF)}
+El LOF mide la densidad local de un punto en comparación con la densidad de sus vecinos más cercanos. Detecta anomalías en datos de alta dimensión y en clústeres de diferentes densidades.
+
+Funcionamiento:  
+
+\begin{itemize}
+    \item  Distancia k-vecino más cercano: para cada punto, se calcula la distancia al k-ésimo vecino más cercano.
+    \item Densidad local: se calcula la densidad local de un punto como la inversa de la distancia promedio a sus k-vecinos más cercanos.
+ 
+    \item Factor de outlier local (LOF): compara la densidad local del punto con la densidad local de sus vecinos. Un LOF significativamente mayor que 1 indica una anomalía.
+\end{itemize}
+
+\section{Isolation Forest}
+
+Isolation Forest es un método basado en árboles de decisión, similar al Random Forest. La idea principal del Isolation Forest se basa en que las anomalías son datos «poco frecuentes» y «diferentes» que se aíslan fácilmente. Es decir, se necesitan pocas particiones para aislar una anomalía.
+
+Funcionamiento:
+
+\begin{itemize}
+    \item Se generan múltiples árboles de aislamiento de forma aleatoria.
+    \item En cada nodo del árbol se selecciona aleatoriamente una característica (dimensión) y un valor de corte para dividir el espacio.
+    \item Este proceso se repite recursivamente hasta que cada punto quede aislado o se alcance una profundidad máxima.
+    \item Las observaciones que requieren menos divisiones (profundidad baja) para quedar aisladas se consideran más anómalas.
+    \item La puntuación de anomalía de una instancia se calcula como la \textbf{profundidad media} a la que es aislada en todos los árboles. Cuanto menor sea esta media, mayor es la probabilidad de que se trate de una anomalía.
+\end{itemize}
+
+El algoritmo es eficiente para conjuntos de datos grandes y de alta dimensión, ya que no requiere suposiciones estadísticas sobre la distribución de los datos.

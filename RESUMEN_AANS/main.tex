@@ -1,0 +1,66 @@
+\documentclass[12pt]{report}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[spanish]{babel}
+
+
+\usepackage{amsthm}  % Para los entornos de teoremas
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{amsmath, amssymb} % Para símbolos matemáticos
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage[a4paper, margin=2.5cm]{geometry} % Márgenes de 2.5 cm
+\usepackage{hyperref}
+\usepackage{float}
+\usetikzlibrary{arrows.meta, positioning}
+% Definición de entornos
+\newtheorem{theorem}{Teorema}[section]  % Enumera los teoremas por sección
+\newtheorem{lemma}[theorem]{Lema}       % Usa la misma numeración de los teoremas
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{corollary}[theorem]{Corolario}
+
+% Definición con estilo diferente
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definición}
+\newtheorem{example}[theorem]{Ejemplo}
+\newtheorem{objetivo}[theorem]{Objetivo}
+
+% Observaciones con estilo de remark
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Observación}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+
+
+\title{RESUMEN Aprendizaje Automático No Supervisado}
+\author{Jose Carlos Martínez Bastida
+\\ \small Notas hechas a partir del temario de AANS de UNIR}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\input{TEMA1}
+
+\input{TEMA2}
+
+\input{TEMA3}
+\input{TEMA4}
+
+\input{TEMA5}
+\input{TEMA6}
+
+
+\input{TEMA7}
+\input{TEMA8}
+
+
+\input{TEMA9}
+\input{TEMA10}
+
+
+\end{document}
